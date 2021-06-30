@@ -1,21 +1,37 @@
 # What does this package do?
 
-@ytgs5148/discord-utils is a npm package which makes Discord commands much easier, saving hundreds of line of code. It is customizable and you can use custom responses too. It automatically checks for permission and does all the basic stuff such as **kicking itself** / **checking if target also has same or higher perms** and **much more**
+@ytgs5148/d-utils is a npm package which makes Discord commands much easier, saving hundreds of line of code. It is customizable and you can use custom responses too. It automatically checks for permission and does all the basic stuff such as **kicking itself** / **checking if target also has same or higher perms** and **much more**
 
 # Note
 1. You must use discord.js to use this package.
 2. Use "await" method.
 
+# ChangeLog
+**v1.0.1** *Minor Update*
+1. [**Bugs**] Fixed some mistakes/spellings in the readme file
+2. [**Bugs**] Changed @ytgs5148/discord-utils to **@ytgs5148/d-utils** (typo in the readme file)
+3. [**Bugs**] DM-ing a user while using kick() or ban() shows an error in the console
+4. [**Bugs**] Fixed a issue in the readme file where it used to display parameter info of kick() function in place of all the other function's info.
+5. [**Feature**] Added .guildIcon() function to get the guildIcon link.
+6. [**Feature**] Added .getGuildInfo() to show some information about the guild!
+
+
+[**Changes**] *Updating to the new version would require no changes to your existing file. Response file will be the same. Only new features has been added and no changes to older features has been made!*
+
+<br>
+
+**v1.0.0** *Birthday*
+
 ## Installation
 ```bash
-npm install @ytgs5148/discord-utils
+npm install @ytgs5148/d-utils
 ```
 
 ## Usage
 
 ```javascript
 //Importing d-utils and setting up djs
-const utils = require('@ytgs5148/discord-utils')
+const utils = require('@ytgs5148/d-utils')
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
@@ -58,7 +74,7 @@ client.on("message" , async (message) => {
 Using this saves **125** lines of code. For custom responses, keep reading through the file
 
 # .ban()
-1. [**Object**] The **message** object found in Discord.js (d-utils automatically gets the first pinged user and kick them!)
+1. [**Object**] The **message** object found in Discord.js (d-utils automatically gets the first pinged user and bans them!)
 2. [**Boolean**] Use **true** if you want to send a DM. (in the custom response file which you will get to know later , you can set custom DM response, for embeds, set it to **false**!)
 3. [**Embed/String**] Pass in a **embed** or **string** to be sent if successful
 
@@ -78,7 +94,7 @@ client.on("message" , async (message) => {
 Using this saves **120** lines of code. For custom responses, keep reading through the file
 
 # .unban()
-1. [**Object**] The **message** object found in Discord.js (d-utils automatically gets the first pinged user and kick them!)
+1. [**Object**] The **message** object found in Discord.js (d-utils automatically gets the first pinged user and unbans them!)
 2. [**Integer**] Pass the userID for the user you want to unban!
 3. [**Embed/String**] Pass in a **embed** or **string** to be sent if successful
 
@@ -98,7 +114,7 @@ client.on("message" , async (message) => {
 Using this saves **80** lines of code. For custom responses, keep reading through the file
 
 # .mute()
-1. [**Object**] The **message** object found in Discord.js (d-utils automatically gets the first pinged user and kick them!)
+1. [**Object**] The **message** object found in Discord.js (d-utils automatically gets the first pinged user and mutes them!)
 2. [**Embed/String**] Pass in a **embed** or **string** to be sent if successful
 
 ```javascript
@@ -115,6 +131,53 @@ client.on("message" , async (message) => {
 ```
 
 Using this saves **123** lines of code. For custom responses, keep reading through the file
+
+# .getGuildInfo()
+1. [**Object**] The **message** object found in Discord.js 
+
+```javascript
+client.on("message" , async (message) => {
+
+    if (msg.content.includes("!serverinfo")) {
+        const result = await utils.getGuildInfo(message)
+        //The result variable has some information stored in it.
+        const embed = new Discord.MessageEmbed()
+        .setImage(`${result.iconLink}`)
+        .setTitle(`${result.name}`)
+
+        message.reply(embed)
+    }
+})
+```
+
+```javascript
+{
+  id: '123456789101112131',
+  name: 'Discord',
+  icon: '8eab3a82c675391'
+  region: 'mars',
+  memberCount: '50456',
+  date_joined: 'Thu May 20 2021 09:07:34 GMT',
+  verificationLvl: '0',
+  iconLink: 'https://cdn.discordapp.com/icons/123456789101112131/8eab3a82c675391.png?size=128'
+}
+```
+
+# .guildIcon()
+1. [**Object**] The **message** object found in Discord.js.
+2. [**Integer**] Pass the size of the icon. e.g. **128** , **64** , **16** If not used, will use 128 by default!
+
+```javascript
+client.on("message" , async (message) => {
+
+    if (msg.content.includes("!serverIcon")) {
+        const result = await utils.getIcon(message , 128)
+
+        message.reply(result)
+        //Shows a link of the guild icon. Can be used in embeds( .setImage() )
+    }
+})
+```
 
 # Custom Responses
 ## Steps
@@ -157,6 +220,8 @@ Using this saves **123** lines of code. For custom responses, keep reading throu
 # Note
 I am working on adding more commands such as tickets , warning and economy commands! If there are any mistakes in this file, feel free to DM me. Also if there are any issues with the package, DM me!
 
+If there is a error, it eithers logs it in console, or sends a default message to the Discord channel. You can customize the response in custom response file. To know more read above!
+
 # Contact
 1. Discord: **YTGS#2697** *(use this!)* or YTGS#0001
 
@@ -186,7 +251,6 @@ I am working on adding more commands such as tickets , warning and economy comma
 | 16            | [unban] User isnt banned                              |
 ```
 
-If there is a error, it eithers logs it in console, or sends a default message to the Discord channel. You can customize the response in custom response file. To know more read above!
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

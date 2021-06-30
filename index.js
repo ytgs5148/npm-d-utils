@@ -1,5 +1,7 @@
 const messageData = require('./utils/message')
+const guildData = require('./utils/guild')
 const devData = require('./utils/dev')
+
 try { var responseFile = require('../../../d-utils.json') } catch(e) {console.log("You dont have a custom message.json file! Default messages wil be sent! For more info click here:-")}
 
 module.exports.kick = async (message , isDM , successEmbed) => {
@@ -456,6 +458,19 @@ module.exports.mute = async (message , successEmbed) => {
     })
 
     return 202
+}
+
+module.exports.getGuildInfo = async (message) => {
+    const result = await guildData.getGuildData(message)
+    if (!result) return null
+
+    return result
+}
+
+module.exports.guildIcon = async (message , size) => {
+    const icon = await guildData.getGuildImage(message , size)
+
+    return icon
 }
 
 module.exports.getVersion = async() => {
