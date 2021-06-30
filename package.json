@@ -1,0 +1,9 @@
+{
+  "name": "dcs",
+  "version": "1.0.0",
+  "description": "A npm package to make common discord commands more easier and save time.",
+  "main": "index.js",
+  "author": "YTGS",
+  "license": "MIT",
+  "dependencies": {}
+}
