@@ -1,3 +1,6 @@
+# WARNING:
+This package is no longer maintained and is outdated!
+
 # What does this package do?
 
 @ytgs5148/d-utils is a npm package which makes Discord commands much easier, saving hundreds of line of code. It is customizable and you can use custom responses too. It automatically checks for permission and does all the basic stuff such as **kicking itself** / **checking if target also has same or higher perms** and **much more**
